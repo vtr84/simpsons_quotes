@@ -2,8 +2,8 @@
 ### API calls challenge
 
 **Objectives**
-- API Call (AJAX or Axios)
-- JSON file processing
+- API Call (Axios)
+- JSON file reading
 - DOM manipulation
 
 ## Try it here:

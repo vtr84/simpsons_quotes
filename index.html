@@ -22,7 +22,6 @@
             .quote-left {
                 display: flex;
                 flex-direction: row;
-                padding: 10px;
             }
             .quote-right {
                 display: flex;
@@ -30,9 +29,14 @@
             }
             .quote-img {
                 margin: 10px;
+                height: 200px;
             }
+ 
             .quote-signature {
                 margin: 5px 0px 0px 30px;
+            }
+            .quote-character {
+                text-align: right;
             }
         </style>
 	</head>
@@ -42,13 +46,13 @@
                 <article class="message is-info">
                     <div class="message-body">
                         <div id="quote" class="quote-left">
-                            <img class="quote-img" src="what.jpg" alt="i'm an img" />
-                            <p class="quote-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.</p>
+                            <img id="image" class="quote-img" src="" alt="" />
+                            <p id="quote-text" class="quote-text"></p>
                         </div>
-                        <p class="quote-signature">by whoever</p>
+                        <p id="character" class="quote-character"></p>
                     </div>
                   </article>
-                <button class="button is-link is-outlined"><i class="fas fa-hamburger fa-fw"></i> Get me a new quote</button>
+                <button id="new" class="button is-link is-outlined"><i class="fas fa-hamburger fa-fw"></i> Get me a new quote</button>
                 </div>
 		</section>
 
@@ -58,6 +62,29 @@
 			integrity="sha256-S1J4GVHHDMiirir9qsXWc8ZWw74PHHafpsHp5PXtjTs="
 			crossorigin="anonymous"
 		></script>
-		<script></script>
+		<script>
+            function fetchQuotesJSON() {
+            const url = `https://simpsons-quotes-api.herokuapp.com/quotes`;
+            axios.get(url)
+            .then(function(res) {
+                return res.data;
+            })
+            .then(function(quote) {
+                document.getElementById('quote-text').innerHTML = `"${quote[0].quote}"`
+                document.getElementById('image').src = quote[0].image
+                document.getElementById('image').alt = quote[0].character
+                document.getElementById('character').innerHTML = quote[0].character
+                if (quote[0].characterDirection === 'Right') {
+                    document.getElementById('quote').className = 'quote-right'
+                    document.getElementById('character').className = 'quote-character'
+                 } else {
+                    document.getElementById('quote').className = 'quote-left'
+                    document.getElementById('character').className = ''
+                 }
+            });
+            }
+            fetchQuotesJSON();
+            document.getElementById('new').addEventListener('click', () => fetchQuotesJSON() )
+        </script>
 	</body>
 </html>
