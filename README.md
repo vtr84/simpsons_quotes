@@ -3,8 +3,8 @@
 
 **Objectives**
 - API Call
-..* AJAX or Axios
-..* JSON file processing
+- .. AJAX or Axios
+- .. JSON file processing
 - DOM manipulation
 
 ## Try it here:
