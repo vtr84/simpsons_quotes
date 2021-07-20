@@ -2,10 +2,7 @@
 ### API calls challenge
 
 **Objectives**
-- API Call
-2. Another item
-⋅⋅* Unordered sub-list. 
-... AJAX or Axios
+- API Call (AJAX or Axios)
 - JSON file processing
 - DOM manipulation
 
